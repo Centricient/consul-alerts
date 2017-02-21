@@ -723,6 +723,7 @@ func (c *ConsulAlertClient) IsBlacklisted(check *Check) bool {
 	if check.ServiceID != "" {
 		service = check.ServiceID
 		serviceCheckKey := fmt.Sprintf("consul-alerts/config/checks/blacklist/services/%s", service)
+
 		serviceBlacklisted = func() bool { return c.CheckKeyExists(serviceCheckKey) || c.CheckKeyMatchesRegexp("consul-alerts/config/checks/blacklist/services", service) }
 	}
 
